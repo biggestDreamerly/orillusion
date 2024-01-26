@@ -40,8 +40,12 @@ class Sample_Skeleton3 {
 
     async initScene(scene: Scene3D) {
         {
-            let rootNode = await Engine3D.res.loadGltf('gltfs/glb/Soldier_draco.glb');
-            this.character = rootNode.getObjectByName('Character') as Object3D;
+            this.character = await Engine3D.res.loadGltf('yasuo.glb');
+            // console.log(rootNode,'rootNode')
+
+            // this.character = rootNode.getObjectByName('Character') as Object3D;
+            console.log(this.character,'character')
+
             this.character.scaleX = 0.3;
             this.character.scaleY = 0.3;
             this.character.scaleZ = 0.3;
@@ -52,9 +56,9 @@ class Sample_Skeleton3 {
             let animation = this.character.getComponentsInChild(SkeletonAnimationComponent)[0];
 
             const runClip = animation.getAnimationClip("Run");
-            runClip.addEvent("Begin", 0);
-            runClip.addEvent("Mid", runClip.totalTime / 2);
-            runClip.addEvent("End", runClip.totalTime);
+            // runClip.addEvent("Begin", 0);
+            // runClip.addEvent("Mid", runClip.totalTime / 2);
+            // runClip.addEvent("End", runClip.totalTime);
 
             animation.eventDispatcher.addEventListener("Begin", (e: any /*AnimationEvent*/) => {
                 console.log("Run-Begin", e.skeletonAnimation.getAnimationClipState('Run').time)
